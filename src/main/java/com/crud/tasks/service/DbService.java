@@ -15,4 +15,8 @@ public class DbService {
     public List<Task> getAllTasks(){
         return repository.findAll();
     }
+
+     Task getTaskById(final Long id){
+        return repository.findById(id);
+    }
 }
