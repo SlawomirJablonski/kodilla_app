@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 @RestController
 @RequestMapping("/v1/task")
 public class TaskController {
@@ -23,22 +25,23 @@ public class TaskController {
     }
 
     @GetMapping("getTask")
-    public TaskDto getTask(Long taskId){
-        return new TaskDto(1L,"test title","test_content");
+    public TaskDto getTask(Long taskId)throws TaskNotFoundException{
+        return taskMapper.mapToTaskDto(service.getTask(taskId).orElseThrow(TaskNotFoundException::new));
     }
 
     @DeleteMapping("deleteTask")
     public void deleteTask(Long taskId){
+        service.deleteTaskById(taskId);
 
     }
 
     @PutMapping("updateTask")
     public TaskDto updateTask(@RequestBody TaskDto taskDto){
-        return new TaskDto(1L,"Edited test title","test content");
+        return taskMapper.mapToTaskDto(service.saveTask(taskMapper.mapToTask(taskDto)));
     }
 
-    @PostMapping("createTask")
+    @PostMapping(value = "createTask", consumes = APPLICATION_JSON_VALUE)
     public void createTask(@RequestBody TaskDto taskDto){
-
+        service.saveTask(taskMapper.mapToTask(taskDto));
     }
 }
