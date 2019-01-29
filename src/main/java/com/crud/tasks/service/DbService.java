@@ -24,7 +24,7 @@ public class DbService {
     public Task saveTask(final Task task){
         return repository.save(task);
     }
-    public void deleteTaskById(final Long id){
+    public void deleteTask(final Long id){
             repository.deleteTaskById(id);
     }
 }

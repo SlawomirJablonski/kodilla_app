@@ -31,7 +31,7 @@ public class TaskController {
 
     @DeleteMapping("deleteTask")
     public void deleteTask(Long taskId){
-        service.deleteTaskById(taskId);
+        service.deleteTask(taskId);
 
     }
 
