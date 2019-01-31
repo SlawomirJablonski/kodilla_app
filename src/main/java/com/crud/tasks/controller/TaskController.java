@@ -1,12 +1,12 @@
 package com.crud.tasks.controller;
 
+import com.crud.tasks.domain.DeleteTask;
 import com.crud.tasks.domain.TaskDto;
 import com.crud.tasks.mapper.TaskMapper;
 import com.crud.tasks.service.DbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -30,8 +30,8 @@ public class TaskController {
     }
 
     @DeleteMapping("deleteTask")
-    public void deleteTask(Long taskId){
-        service.deleteTask(taskId);
+    public void deleteTask(@RequestBody DeleteTask request){
+        service.deleteTask(request.getTaskId());
 
     }
 
