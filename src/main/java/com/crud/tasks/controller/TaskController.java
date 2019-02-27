@@ -12,10 +12,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/task")
 public class TaskController {
+    @Autowired
+    private DbService service;
+    @Autowired
+    private TaskMapper taskMapper;
 
     @GetMapping("getTasks")
     public List<TaskDto> getTasks(){
-        return new ArrayList<>();
+        return taskMapper.mapToTaskDtoList(service.getAllTasks());
     }
 
     @GetMapping("getTask")
