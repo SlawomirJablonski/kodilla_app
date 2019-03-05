@@ -4,5 +4,9 @@
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="kodilla_app_main" target="1.8" />
+      <module name="kodilla_app_test" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
